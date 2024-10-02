@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F4D5D5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 375px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        .steps {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #E46F63;
+        }
+        .step-count {
+            font-size: 48px;
+            color: #333;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .buttons button {
+            background-color: #E46F63;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .buttons button:hover {
+            background-color: #D05453;
+        }
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #E46F63;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-around;
+        }
+        .footer-nav img {
+            width: 25px;
+            height: 25px;
+        }
+        .footer-nav img {
+             width: 25px;
+             height: 25px;
+             transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .footer-nav img:hover {
+            transform: scale(1.2);
+            filter: brightness(1.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>STEP RECORD</h1>
+        <div class="steps">
+            <p>User1：<span class="step-count" id="aStepCount">0</span></p>
+            <p>User2：<span class="step-count" id="dStepCount">0</span></p>
+        </div>
+        <div class="buttons">
+            <button id="resetBtn">Reset</button>
+        </div>
+    </div>
+
+    <div class="footer-nav">
+        <img src="images/Frame 30.png" alt="Home Icon">
+        <img src="images/Frame 31.png" alt="Calendar Icon">
+        <img src="images/Frame 32.png" alt="Workout Icon">
+        <img src="images/Frame 33.png" alt="Profile Icon">
+    </div>
+
+    <script>
+        let aPressCount = 0;  // A键按下的次数
+        let dPressCount = 0;  // D键按下的次数
+        let aStepCount = 0;   // A键的步数
+        let dStepCount = 0;   // D键的步数
+
+        const aStepDisplay = document.getElementById('aStepCount');
+        const dStepDisplay = document.getElementById('dStepCount');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // 更新步数显示
+        function updateSteps() {
+            aStepDisplay.textContent = aStepCount;
+            dStepDisplay.textContent = dStepCount;
+        }
+
+        // 监听键盘按下事件
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'a' || event.key === 'A') {
+                aPressCount++;
+                if (aPressCount >= 10) {
+                    aStepCount++;
+                    aPressCount = 0; // 重置按下的次数
+                }
+            }
+            if (event.key === 'd' || event.key === 'D') {
+                dPressCount++;
+                if (dPressCount >= 10) {
+                    dStepCount++;
+                    dPressCount = 0; // 重置按下的次数
+                }
+            }
+            updateSteps();
+        });
+
+        // 重置步数和按键计数
+        function resetSteps() {
+            aPressCount = 0;
+            dPressCount = 0;
+            aStepCount = 0;
+            dStepCount = 0;
+            updateSteps();
+        }
+
+        // 重置按钮事件
+        resetBtn.addEventListener('click', resetSteps);
+
+        // 初始化步数显示
+        updateSteps();
+    </script>
+</body>
+</html>

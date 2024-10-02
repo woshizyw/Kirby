@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discuss</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #F4D5D5;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 375px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .back-arrow {
+        cursor: pointer;
+    }
+    .post-image {
+        width: 100%;
+        border-radius: 10px;
+    }
+    .post-info {
+        margin-top: 10px;
+    }
+    .post-info h3 {
+        margin: 0;
+        font-size: 18px;
+        color: #000;
+    }
+    .post-info p {
+        margin: 5px 0;
+        color: #666;
+        font-size: 14px;
+    }
+    .reactions {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .reactions img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+    .reactions .count {
+        background-color: #d2f0cc;
+        border-radius: 50%;
+        padding: 5px 10px;
+        color: #4CAF50;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .comments {
+        margin-top: 20px;
+        font-size: 14px;
+    }
+    .comments span {
+        font-weight: bold;
+    }
+    .comments p {
+        margin: 0;
+    }
+    .comment-box {
+        display: flex;
+        margin-top: 20px;
+    }
+    .comment-box input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-right: 10px;
+        font-size: 14px;
+    }
+    .comment-box button {
+        background-color: #E46F63;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .footer-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #E46F63;
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-around;
+    }
+    .footer-nav img {
+        width: 25px;
+        height: 25px;
+    }
+    .reactions-section {
+        display: flex;
+        align-items: center;  /* This aligns items (avatars and icons) vertically */
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    .reactions {
+        display: flex;
+        align-items: center;  /* Ensures avatars are vertically aligned */
+    }
+    .actions {
+        display: flex;
+        align-items: center;  /* Ensures icons are vertically aligned */
+        justify-content: space-around;
+        width: 120px;  /* Adjust width to ensure enough spacing between icons */
+    }
+    .actions img {
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+    }
+    .back-arrow {
+        cursor: pointer;
+        transition: transform 0.3s ease, color 0.3s ease; /* 添加平滑过渡效果 */
+    }
+    .back-arrow:hover {
+        transform: scale(1.1); /* 鼠标悬停时放大图标 */
+        color: #E46F63; /* 悬停时改变箭头颜色 */
+    }
+    .footer-nav img {
+        width: 25px;
+        height: 25px;
+        transition: transform 0.3s ease, filter 0.3s ease; /* 平滑的过渡效果 */
+    }
+    .footer-nav img:hover {
+        transform: scale(1.2); /* 鼠标悬停时放大图标 */
+        filter: brightness(1.3); /* 悬停时让图标变亮 */
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-arrow">
+            <span>&larr;</span>
+        </div>
+        <img src="images/image 3.png" alt="Running Photo" class="post-image">
+        
+        <div class="post-info">
+            <h3>Locked In</h3>
+            <p>Peter · 19/09/2024 · Run 17.71km</p>
+        </div>
+        
+    <div class="reactions-section">
+        <div class="reactions">
+            <img src="images/Shape.png" alt="User 1 Avatar">
+            <img src="images/Shape (1).png" alt="User 2 Avatar">
+            <img src="images/Shape (2).png" alt="User 3 Avatar">
+            <span class="count" id="like-count">91</span>
+        </div>
+        <div class="actions">
+            <!-- Add action icons (like, comment, share) -->
+            <img src="images/like.png" alt="Like" id="like-btn">
+        </div>
+    </div>
+        
+        <div class="comments" id="comment-section">
+            <span>Tom · One week ago</span>
+            <p>Sheesh!!</p>
+        </div>
+        
+        <div class="comment-box">
+            <input type="text" placeholder="Add comments" id="comment-input">
+            <button id="send-comment">Send</button>
+        </div>
+    </div>
+    
+    <div class="footer-nav">
+        <img src="images/Frame 30.png" alt="Home Icon">
+        <img src="images/Frame 31.png" alt="Calendar Icon">
+        <img src="images/Frame 32.png" alt="Workout Icon">
+        <img src="images/Frame 33.png" alt="Profile Icon">
+    </div>
+
+    <script>
+        // 点赞功能
+        let likeCount = 91; // 初始化点赞数
+        const likeBtn = document.getElementById('like-btn');
+        const likeDisplay = document.getElementById('like-count');
+
+        likeBtn.addEventListener('click', function() {
+            likeCount++;
+            likeDisplay.textContent = likeCount; // 更新点赞数
+        });
+
+        // 评论功能
+        const commentSection = document.getElementById('comment-section');
+        const commentInput = document.getElementById('comment-input');
+        const sendCommentBtn = document.getElementById('send-comment');
+
+        sendCommentBtn.addEventListener('click', function() {
+            const commentText = commentInput.value.trim();
+            if (commentText) {
+                const newComment = document.createElement('div');
+                newComment.innerHTML = `<span>You · Just now</span><p>${commentText}</p>`;
+                commentSection.appendChild(newComment);
+                commentInput.value = ''; // 清空输入框
+            }
+        });
+    </script>
+</body>
+</html>
