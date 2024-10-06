@@ -23,36 +23,38 @@ pinMode(PIN_D, INPUT);
 
 void loop() {
 
-    // 检查 A 键是否按下
+    // check A
     if (digitalRead(PIN_A) == HIGH) {
-        if (buf[2] != 4) { // 只在按下时发送一次按键按下的信号
-            buf[2] = 4; // 设置为 A 键的键码
-            Serial.write(buf, 8); // 发送按键按下信号
+        if (buf[2] != 4) { 
+            buf[2] = 4; // set A
+            Serial.write(buf, 8); 
         }
     }
-    else if (buf[2] == 4) { // 当 A 键松开时
-        releaseKey(); // 发送按键松开信号
+    else if (buf[2] == 4) { 
+        releaseKey(); 
     }
 
-    // 检查 D 键是否按下
+    // check D
     if (digitalRead(PIN_D) == HIGH) {
-        if (buf[2] != 7) { // 只在按下时发送一次按键按下的信号
-            buf[2] = 7; // 设置为 D 键的键码
-            Serial.write(buf, 8); // 发送按键按下信号
+        if (buf[2] != 7) { 
+            buf[2] = 7; // Set
+            Serial.write(buf, 8); 
         }
     }
-    else if (buf[2] == 7) { // 当 D 键松开时
-        releaseKey(); // 发送按键松开信号
+    else if (buf[2] == 7) { // release D
+        releaseKey(); // release
     }
 
 }
 
-// 释放按键的函数
+// release
 void releaseKey() {
     buf[0] = 0;
     buf[2] = 0;
-    Serial.write(buf, 8); // 发送按键释放信号
+    Serial.write(buf, 8); // send
 }
 
 // Function for Key Release
+
+
 
