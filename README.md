@@ -1,4 +1,4 @@
-Overview
+Overview 
 Fitlink is a web-based application designed to help users track fitness activities, engage with friends, and keep a record of their physical activities. The app allows users to post about their workouts, track personal statistics, and participate in competitive activities with friends. This app is intended to provide a simple yet interactive fitness experience.
 
 Features
