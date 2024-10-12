@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Knee Record</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9d5d3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* 容器样式 */
+        .step-counter-container {
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .step-counter-container h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .step {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #fa8072;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .step span {
+            font-weight: bold;
+            color: #333;
+            font-size: 24px;
+        }
+
+        /* 按钮样式 */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #fa8072;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #e96e6b;
+        }
+
+        /* 返回按钮 */
+        .back-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 20px;
+            color: #fa8072;
+            cursor: pointer;
+        }
+
+        /* 弹出框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 300px;
+            z-index: 1000;
+        }
+
+        .modal h2 {
+            margin-bottom: 10px;
+        }
+
+        .modal p {
+            margin: 10px 0;
+        }
+
+        .modal .button {
+            background-color: #fa8072;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 16px;
+        }
+
+        /* 模态框遮罩层 */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <!-- 返回到exercise页面的按钮 -->
+    <a href="exercise.html" class="back-icon">←</a>
+
+    <div class="step-counter-container">
+        <h1>HIGH KNEE RECORD</h1>
+        <div class="step">
+            <div>You:</div>
+            <span id="user1-count">0</span>
+        </div>
+        <div class="step">
+            <div>Your opponent:</div>
+            <span id="user2-count">0</span>
+        </div>
+
+        <div class="button-group">
+            <button class="button" onclick="resetCount()">Reset</button>
+            <button class="button" onclick="endGame()">End</button>
+        </div>
+    </div>
+
+    <!-- 弹出框 -->
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="resultModal">
+        <h2>Game Over</h2>
+        <p id="resultText"></p>
+        <a href="index.html" class="button">Return to Home</a>
+    </div>
+
+    <script>
+        // 初始化高抬腿次数
+        let user1HighKnee = 0;
+        let user2HighKnee = 0;
+
+        // 监听键盘按键事件
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 's' || event.key === 'S') {
+                user1HighKnee++;
+                document.getElementById('user1-count').textContent = user1HighKnee;
+            }
+            if (event.key === 'd' || event.key === 'D') {
+                user2HighKnee++;
+                document.getElementById('user2-count').textContent = user2HighKnee;
+            }
+        });
+
+        // 重置计数
+        function resetCount() {
+            user1HighKnee = 0;
+            user2HighKnee = 0;
+            document.getElementById('user1-count').textContent = user1HighKnee;
+            document.getElementById('user2-count').textContent = user2HighKnee;
+        }
+
+        // 结束游戏并显示结果
+        function endGame() {
+            let resultText;
+            if (user1HighKnee > user2HighKnee) {
+                resultText = `You win with ${user1HighKnee} high knees!`;
+            } else if (user2HighKnee > user1HighKnee) {
+                resultText = `Your opponent wins with ${user2HighKnee} high knees!`;
+            } else {
+                resultText = `It's a tie with both at ${user1HighKnee} high knees!`;
+            }
+            document.getElementById('resultText').textContent = resultText;
+
+            // 显示弹出框
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('resultModal').style.display = 'block';
+        }
+
+        // 点击遮罩层隐藏弹出框
+        document.getElementById('overlay').addEventListener('click', () => {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('resultModal').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness App</title>
+    <style>
+        /* CSS Styling */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Header styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        header h1 {
+            color: #222;
+        }
+
+        .today-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            font-size: 16px;
+        }
+
+        .today-stats div {
+            text-align: center;
+        }
+
+        .today-stats span {
+            font-weight: bold;
+        }
+
+        /* Specific colors for Today stats */
+        .today-stats .calories span {
+            color: #FF4500; /* Red for Calories */
+        }
+
+        .today-stats .time span {
+            color: #32CD32; /* Green for Time */
+        }
+
+        .today-stats .distance span {
+            color: #00CED1; /* Blue for Distance */
+        }
+
+        /* Top icons */
+        .header-icon, .header-date {
+            font-size: 20px;
+            cursor: pointer;
+            color: #222;
+        }
+
+        /* Post styles */
+        .post {
+            background: #f9f9f9;
+            margin: 15px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .post-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .map-image, .photo-image {
+            width: 90%; /* Reduced size */
+            border-radius: 10px;
+            margin-top: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Like and Comment Icons */
+        .post-icons {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 10px;
+        }
+
+        .post-icons img {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .post-icons img:hover {
+            opacity: 1;
+        }
+
+        /* Liked state for like icon */
+        .liked {
+            filter: brightness(0.8);
+            opacity: 1;
+        }
+
+        /* Comment section */
+        .comments {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .comments p {
+            margin: 5px 0;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #fa8072;
+            padding: 10px 0;
+        }
+
+        .nav-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-icon img {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-icon:hover img {
+            transform: scale(1.2); /* Enlarges icon on hover */
+        }
+
+        /* Modal styling for post creation and comment input */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .modal input,
+        .modal textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .modal button {
+            background-color: #fa8072;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Homepage Section -->
+    <section id="homepage" class="page active">
+        <header>
+            <span class="header-icon" onclick="openPostModal()">+</span>
+            <h1>Homepage</h1>
+            <div class="header-date">
+                <span id="date-display">10/15</span>
+                <span onclick="changeDate()">→</span>
+            </div>
+        </header>
+
+        <div class="today-stats">
+            <div class="calories">
+                <span>Calories</span>
+                <p>1,503kJ</p>
+            </div>
+            <div class="time">
+                <span>Time</span>
+                <p>21min</p>
+            </div>
+            <div class="distance">
+                <span>Distance</span>
+                <p>2.5km</p>
+            </div>
+        </div>
+        
+        <!-- Posts section -->
+        <div class="post">
+            <div class="post-header">
+                <img src="img/Tommy.png" alt="User avatar">
+                <div>
+                    <p>Tommie</p>
+                    <span>Run - 19/09/2024 in 6:58pm, America</span>
+                </div>
+            </div>
+            <p>Feeling Good</p>
+            <p>The bounce back from Berlin Marathon is real! Haven't felt this good in a bit...fresh legs?</p>
+            <img src="img/map.png" alt="Running map" class="map-image">
+            <div class="post-icons">
+                <img src="img/like.png" alt="Like Icon" onclick="toggleLike(this)">
+                <img src="img/comment.png" alt="Comment Icon" onclick="openCommentModal(this)">
+            </div>
+            <div class="comments"></div>
+        </div>
+        
+        <!-- Another Post -->
+        <div class="post">
+            <div class="post-header">
+                <img src="img/Peter.png" alt="User avatar">
+                <div>
+                    <p>Peter</p>
+                    <span>Run - 19/09/2024 in 6:58pm, America</span>
+                </div>
+            </div>
+            <p>Bouncing Back Well</p>
+            <img src="img/Run.png" alt="Running photo" class="photo-image">
+            <div class="post-icons">
+                <img src="img/like.png" alt="Like Icon" onclick="toggleLike(this)">
+                <img src="img/comment.png" alt="Comment Icon" onclick="openCommentModal(this)">
+            </div>
+            <div class="comments"></div>
+        </div>
+    </section>
+
+    <!-- Activity Section -->
+    <section id="activity" class="page">
+        <h1>Activity</h1>
+        <!-- Content for Activity Page -->
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="page">
+        <h1>Profile</h1>
+        <!-- Content for Profile Page -->
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-icon">
+            <img src="img/Home.png" alt="首页">
+        </a>
+        <a href="activity.html" class="nav-icon">
+            <img src="img/weight.png" alt="活动">
+        </a>
+        <a href="profile.html" class="nav-icon">
+            <img src="img/Profile.png" alt="个人资料">
+        </a>
+    </nav>
+
+    <!-- Modal for creating a post -->
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="postModal">
+        <h2>Create a Post</h2>
+        <input type="text" placeholder="Title" id="postTitle">
+        <textarea placeholder="What's on your mind?" rows="4" id="postContent"></textarea>
+        <button onclick="submitPost()">Post</button>
+    </div>
+
+    <!-- Modal for adding a comment -->
+    <div class="modal" id="commentModal">
+        <h2>Add a Comment</h2>
+        <textarea placeholder="Write your comment here..." rows="3" id="commentContent"></textarea>
+        <button onclick="submitComment()">Submit Comment</button>
+    </div>
+
+    <script>
+        // 打开发布帖子弹出框
+        function openPostModal() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('postModal').style.display = 'block';
+        }
+
+        // 提交帖子
+        function submitPost() {
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+            if (title && content) {
+                alert(`Post Created:\nTitle: ${title}\nContent: ${content}`);
+                closePostModal();
+            } else {
+                alert("Please fill in all fields");
+            }
+        }
+
+        // 关闭弹出框
+        document.getElementById('overlay').addEventListener('click', closePostModal);
+        function closePostModal() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('postModal').style.display = 'none';
+            document.getElementById('commentModal').style.display = 'none';
+        }
+
+        // 更改日期的功能
+        function changeDate() {
+            const date = prompt("Enter new date (MM/DD):", "10/15");
+            if (date) {
+                document.getElementById('date-display').textContent = date;
+            }
+        }
+
+        // 切换点赞样式
+        function toggleLike(likeIcon) {
+            likeIcon.classList.toggle("liked");
+        }
+
+        // 打开评论弹出框
+        let activePost;
+        function openCommentModal(commentIcon) {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('commentModal').style.display = 'block';
+            activePost = commentIcon.closest(".post").querySelector(".comments");
+        }
+
+        // 提交评论
+        function submitComment() {
+            const comment = document.getElementById('commentContent').value;
+            if (comment) {
+                const commentParagraph = document.createElement("p");
+                commentParagraph.textContent = comment;
+                activePost.appendChild(commentParagraph);
+                document.getElementById('commentContent').value = "";
+                closePostModal();
+            } else {
+                alert("Please write a comment");
+            }
+        }
+    </script>
+</body>
+</html>

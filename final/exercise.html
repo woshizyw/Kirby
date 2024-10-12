@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Together</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* 页面容器 */
+        .container {
+            padding: 20px;
+        }
+
+        /* 顶部标题 */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        header .back-icon {
+            cursor: pointer;
+            font-size: 20px;
+            color: #fa8072;
+        }
+
+        /* 匹配选项卡 */
+        .match-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .match-card h2 {
+            font-size: 18px;
+            color: #666;
+            margin: 0 0 15px;
+        }
+
+        .match-card .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .profile-section img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .match-type {
+            display: flex;
+            gap: 10px;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+
+        .match-type button {
+            background-color: #f9f9f9;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .match-type .active {
+            background-color: #fa8072;
+            color: #fff;
+        }
+
+        .start-match-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #fa8072;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* 邀请朋友列表 */
+        .invite-friends {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .friend-list {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .friend-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .friend-item:last-child {
+            border-bottom: none;
+        }
+
+        .friend-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .friend-item .friend-name {
+            flex-grow: 1;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .invite-btn {
+            background-color: #fa8072;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .invite-btn.checked {
+            background-color: #4CAF50; /* 绿色，表示已勾选 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部标题 -->
+        <header>
+            <a href="activity.html" class="back-icon">←</a>
+            <h1>Exercise Together</h1>
+        </header>
+
+        <!-- 匹配选项卡 -->
+        <div class="match-card">
+            <h2>Find Like-Minded Matches</h2>
+            <div class="profile-section">
+                <img src="img/haige.png" alt="User Avatar">
+            </div>
+
+            <!-- 运动类型选择 -->
+            <div class="match-type">
+                <button onclick="selectMatchType(this, 'run')" class="active">Run</button>
+                <button onclick="selectMatchType(this, 'kick')">Kick</button>
+                <button onclick="selectMatchType(this, 'swim')">Swim</button>
+                <button onclick="selectMatchType(this, 'bike')">Bike</button>
+            </div>
+
+            <!-- 开始匹配按钮 -->
+            <button id="startMatchBtn" class="start-match-btn">Start Match</button>
+        </div>
+
+        <!-- 邀请朋友 -->
+        <div class="invite-friends">Invite Friends</div>
+        <div class="friend-list">
+            <!-- 单个朋友列表项 -->
+            <div class="friend-item">
+                <img src="img/Peter.png" alt="Friend Avatar">
+                <span class="friend-name">Peter</span>
+                <div class="invite-btn" onclick="toggleInvite(this)">+</div>
+            </div>
+            <div class="friend-item">
+                <img src="img/Emma.png" alt="Friend Avatar">
+                <span class="friend-name">Emma</span>
+                <div class="invite-btn" onclick="toggleInvite(this)">+</div>
+            </div>
+            <div class="friend-item">
+                <img src="img/Tommy.png" alt="Friend Avatar">
+                <span class="friend-name">Tommy</span>
+                <div class="invite-btn" onclick="toggleInvite(this)">+</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedActivity = 'run'; // 默认选择“Run”
+
+        // 更新所选活动类型的函数
+        function selectMatchType(button, activity) {
+            document.querySelectorAll('.match-type button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            selectedActivity = activity;
+        }
+
+        // 根据所选活动类型导航
+        document.getElementById('startMatchBtn').addEventListener('click', function() {
+            if (selectedActivity === 'run') {
+                window.location.href = 'run.html';
+            } else if (selectedActivity === 'kick') {
+                window.location.href = 'kick.html';
+            }
+            // 如果有其他活动页面，可以在这里添加更多条件
+        });
+
+        // 邀请按钮的切换功能
+        function toggleInvite(button) {
+            button.classList.toggle('checked');
+            button.textContent = button.classList.contains('checked') ? '✓' : '+';
+        }
+    </script>
+</body>
+</html>

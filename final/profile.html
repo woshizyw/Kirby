@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        /* CSS 样式 */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* 顶部样式 */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .profile-header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .profile-info {
+            text-align: left;
+            flex-grow: 1;
+            padding-left: 15px;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .follow-info {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .achievement-badge {
+            background-color: #f8d7da;
+            color: #c53030;
+            border-radius: 10px;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+
+        /* 数据卡片样式 */
+        .data-cards {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .data-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+
+        .data-card p {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .data-card span {
+            font-size: 28px;
+            color: #fa8072;
+            font-weight: bold;
+        }
+
+        /* 菜单列表样式 */
+        .menu-list {
+            margin-top: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .menu-item img {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+        }
+
+        .menu-item p {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* 底部导航栏 */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #fa8072;
+            padding: 10px 0;
+        }
+
+        .nav-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-icon img {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-icon:hover img {
+            transform: scale(1.2); /* 放大效果 */
+        }
+    </style>
+</head>
+<body>
+    <!-- Profile 页面内容 -->
+    <section id="profile" class="page active">
+        <div class="profile-header">
+            <img src="img/haige.png" alt="用户头像">
+            <div class="profile-info">
+                <h2>Haige</h2>
+                <p class="follow-info">Follow 45 | Followed 70</p>
+            </div>
+            <div class="achievement-badge">Achievement 33</div>
+        </div>
+
+        <!-- 数据卡片 -->
+        <div class="data-cards">
+            <div class="data-card">
+                <p>Sports data</p>
+                <span>0</span>
+                <p>min</p>
+                <p>This week</p>
+            </div>
+            <div class="data-card">
+                <p>Weight data</p>
+                <span>46.5</span>
+                <p>kg</p>
+                <p>Last 12 months</p>
+            </div>
+        </div>
+
+        <!-- 菜单列表 -->
+        <div class="menu-list">
+            <div class="menu-item">
+                <img src="img/myupdate.png" alt="更新图标">
+                <p>My updates</p>
+            </div>
+            <div class="menu-item">
+                <img src="img/collection.png" alt="收藏图标">
+                <p>Collections</p>
+            </div>
+            <div class="menu-item">
+                <img src="img/activity.png" alt="活动图标">
+                <p>My activity</p>
+            </div>
+            <div class="menu-item">
+                <img src="img/plan.png" alt="计划图标">
+                <p>My plan</p>
+            </div>
+            <div class="menu-item">
+                <img src="img/award.png" alt="成就图标">
+                <p>My achievement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部导航栏 -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-icon">
+            <img src="img/Home.png" alt="首页">
+        </a>
+        <a href="activity.html" class="nav-icon">
+            <img src="img/weight.png" alt="活动">
+        </a>
+        <a href="profile.html" class="nav-icon">
+            <img src="img/Profile.png" alt="个人资料">
+        </a>
+    </nav>
+</body>
+</html>

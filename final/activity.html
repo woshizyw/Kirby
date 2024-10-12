@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Page</title>
+    <style>
+        /* CSS 样式 */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .page {
+            padding: 20px;
+        }
+
+        /* 顶部样式 */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        header h1 {
+            color: #222;
+            text-align: center;
+            flex: 1;
+        }
+
+        /* Tab 样式 */
+        .tab-bar {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .tab-bar button {
+            background-color: #f9f9f9;
+            border: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .tab-bar .active-tab {
+            color: #fff;
+            background-color: #fa8072;
+            border-radius: 20px;
+        }
+
+        /* 活动卡片样式 */
+        .activity-card {
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-card .activity-info {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .activity-card img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            float: right;
+        }
+
+        .activity-card p {
+            margin: 5px 0;
+        }
+
+        /* 底部导航栏 */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #fa8072;
+            padding: 10px 0;
+        }
+
+        .nav-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-icon img {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-icon:hover img {
+            transform: scale(1.2); /* 放大效果 */
+        }
+    </style>
+</head>
+<body>
+    <!-- Activity 页面内容 -->
+    <section id="activity" class="page">
+        <header>
+            <a href="exercise.html" class="header-icon">+</a>
+            <h1>Activity</h1>
+        </header>
+        
+
+        <!-- Tab 按钮 -->
+        <div class="tab-bar">
+            <button onclick="showChallenge()" id="challenge-tab" class="active-tab">Challenge</button>
+            <button onclick="showInProgress()" id="in-progress-tab">In Progress</button>
+        </div>
+
+        <!-- Challenge 活动内容 -->
+        <div id="challenge-content">
+            <div class="activity-card">
+                <div class="activity-info">
+                    <p>Time: 10min</p>
+                    <p>Distance: 1km</p>
+                    <p>5 min ago</p>
+                </div>
+                <button class="join-button">Join</button>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-info">
+                    <p>Time: 5min</p>
+                    <p>Distance: 500km</p>
+                    <p>3 min ago</p>
+                </div>
+                <button class="join-button">Join</button>
+            </div>
+
+            <!-- 更多 Challenge 活动卡片 -->
+            <div class="activity-card">
+                <div class="activity-info">
+                    <p>Time: 10min</p>
+                    <p>Distance: 1km</p>
+                    <p>5 min ago</p>
+                </div>
+                <button class="join-button">Join</button>
+            </div>
+        </div>
+
+        <!-- In Progress 活动内容 -->
+        <div id="in-progress-content" style="display: none;">
+            <div class="activity-card">
+                <div class="activity-info">
+                    <p>🏃‍♂️ Time: 10min Distance: 1km</p>
+                    <p>You and Peter have worked out for a total of 35 minutes</p>
+                    <p>01/09/2024</p>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-info">
+                    <p>🏃‍♂️ Time: 27min Distance: 2.5km</p>
+                    <p>You and Tommie have worked out for a total of 50 minutes</p>
+                    <p>26/08/2024</p>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-info">
+                    <p>🚴‍♀️ Time: 10min Distance: 1km</p>
+                    <p>You and Emma have worked out for a total of 60 minutes</p>
+                    <p>24/08/2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部导航栏 -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-icon">
+            <img src="img/Home.png" alt="首页">
+        </a>
+        <a href="activity.html" class="nav-icon">
+            <img src="img/weight.png" alt="活动">
+        </a>
+        <a href="profile.html" class="nav-icon">
+            <img src="img/Profile.png" alt="个人资料">
+        </a>
+    </nav>
+
+    <script>
+        // 切换到 Challenge 内容
+        function showChallenge() {
+            document.getElementById('challenge-content').style.display = 'block';
+            document.getElementById('in-progress-content').style.display = 'none';
+            document.getElementById('challenge-tab').classList.add('active-tab');
+            document.getElementById('in-progress-tab').classList.remove('active-tab');
+        }
+
+        // 切换到 In Progress 内容
+        function showInProgress() {
+            document.getElementById('challenge-content').style.display = 'none';
+            document.getElementById('in-progress-content').style.display = 'block';
+            document.getElementById('in-progress-tab').classList.add('active-tab');
+            document.getElementById('challenge-tab').classList.remove('active-tab');
+        }
+    </script>
+</body>
+</html>
