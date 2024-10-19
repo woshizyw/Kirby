@@ -317,13 +317,13 @@
     </div>
 
     <script>
-        // 打开发布帖子弹出框
+        // Open the Publish Post pop-up box
         function openPostModal() {
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('postModal').style.display = 'block';
         }
 
-        // 提交帖子
+        // Submit a post
         function submitPost() {
             const title = document.getElementById('postTitle').value;
             const content = document.getElementById('postContent').value;
@@ -335,7 +335,7 @@
             }
         }
 
-        // 关闭弹出框
+        // Close the pop-up box
         document.getElementById('overlay').addEventListener('click', closePostModal);
         function closePostModal() {
             document.getElementById('overlay').style.display = 'none';
@@ -343,7 +343,7 @@
             document.getElementById('commentModal').style.display = 'none';
         }
 
-        // 更改日期的功能
+        // The ability to change dates
         function changeDate() {
             const date = prompt("Enter new date (MM/DD):", "10/15");
             if (date) {
@@ -351,12 +351,12 @@
             }
         }
 
-        // 切换点赞样式
+        // Toggle the like style
         function toggleLike(likeIcon) {
             likeIcon.classList.toggle("liked");
         }
 
-        // 打开评论弹出框
+        // Open the comments pop-up
         let activePost;
         function openCommentModal(commentIcon) {
             document.getElementById('overlay').style.display = 'block';
@@ -364,7 +364,7 @@
             activePost = commentIcon.closest(".post").querySelector(".comments");
         }
 
-        // 提交评论
+        // Submitting a review
         function submitComment() {
             const comment = document.getElementById('commentContent').value;
             if (comment) {
