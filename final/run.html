@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Step Record</title>
     <style>
-        /* 基础样式 */
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -18,7 +18,7 @@
             position: relative;
         }
 
-        /* 容器样式 */
+
         .step-counter-container {
             background-color: #fff;
             padding: 20px 40px;
@@ -48,7 +48,7 @@
             font-size: 24px;
         }
 
-        /* 按钮样式 */
+
         .button-group {
             display: flex;
             justify-content: center;
@@ -70,7 +70,7 @@
             background-color: #e96e6b;
         }
 
-        /* 返回按钮 */
+
         .back-icon {
             position: absolute;
             top: 20px;
@@ -80,7 +80,7 @@
             cursor: pointer;
         }
 
-        /* 弹出框样式 */
+
         .modal {
             display: none;
             position: fixed;
@@ -111,7 +111,7 @@
             font-size: 16px;
         }
 
-        /* 模态框遮罩层 */
+
         .overlay {
             display: none;
             position: fixed;
@@ -125,7 +125,7 @@
     </style>
 </head>
 <body>
-    <!-- 返回到exercise页面的按钮 -->
+
     <a href="exercise.html" class="back-icon">←</a>
 
     <div class="step-counter-container">
@@ -145,7 +145,7 @@
         </div>
     </div>
 
-    <!-- 弹出框 -->
+
     <div class="overlay" id="overlay"></div>
     <div class="modal" id="resultModal">
         <h2>Game Over</h2>
@@ -154,13 +154,13 @@
     </div>
 
     <script>
-        // 初始化步数和计数器
+        // Initialize the number of steps and the counter
         let user1Steps = 0;
         let user2Steps = 0;
         let user1Count = 0;
         let user2Count = 0;
 
-        // 监听键盘按键事件
+        // Listen for keystroke events
         document.addEventListener('keydown', (event) => {
             if (event.key === 'w' || event.key === 'W') {
                 user1Count++;
@@ -180,7 +180,7 @@
             }
         });
 
-        // 重置步数
+        // Resetting steps
         function resetSteps() {
             user1Steps = 0;
             user2Steps = 0;
@@ -188,7 +188,7 @@
             document.getElementById('user2-steps').textContent = user2Steps;
         }
 
-        // 结束游戏并显示结果
+        // End the game and display the result
         function endGame() {
             let resultText;
             if (user1Steps > user2Steps) {
@@ -200,12 +200,12 @@
             }
             document.getElementById('resultText').textContent = resultText;
 
-            // 显示弹出框
+            // Display the pop-up box
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('resultModal').style.display = 'block';
         }
 
-        // 点击遮罩层隐藏弹出框
+        // Click on the overlay to hide the pop-up
         document.getElementById('overlay').addEventListener('click', () => {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('resultModal').style.display = 'none';
