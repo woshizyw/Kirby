@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercise Together</title>
     <style>
-        /* 基础样式 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -13,12 +12,11 @@
             background-color: #f4f4f4;
         }
 
-        /* 页面容器 */
         .container {
             padding: 20px;
         }
 
-        /* 顶部标题 */
+
         header {
             display: flex;
             align-items: center;
@@ -40,7 +38,6 @@
             color: #fa8072;
         }
 
-        /* 匹配选项卡 */
         .match-card {
             background-color: #fff;
             border-radius: 10px;
@@ -104,7 +101,6 @@
             margin-top: 10px;
         }
 
-        /* 邀请朋友列表 */
         .invite-friends {
             font-size: 18px;
             color: #666;
@@ -156,26 +152,23 @@
         }
 
         .invite-btn.checked {
-            background-color: #4CAF50; /* 绿色，表示已勾选 */
+            background-color: #4CAF50; 
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 顶部标题 -->
         <header>
             <a href="activity.html" class="back-icon">←</a>
             <h1>Exercise Together</h1>
         </header>
 
-        <!-- 匹配选项卡 -->
         <div class="match-card">
             <h2>Find Like-Minded Matches</h2>
             <div class="profile-section">
                 <img src="img/haige.png" alt="User Avatar">
             </div>
 
-            <!-- 运动类型选择 -->
             <div class="match-type">
                 <button onclick="selectMatchType(this, 'run')" class="active">Run</button>
                 <button onclick="selectMatchType(this, 'kick')">Kick</button>
@@ -183,14 +176,11 @@
                 <button onclick="selectMatchType(this, 'bike')">Bike</button>
             </div>
 
-            <!-- 开始匹配按钮 -->
+
             <button id="startMatchBtn" class="start-match-btn">Start Match</button>
         </div>
-
-        <!-- 邀请朋友 -->
         <div class="invite-friends">Invite Friends</div>
         <div class="friend-list">
-            <!-- 单个朋友列表项 -->
             <div class="friend-item">
                 <img src="img/Peter.png" alt="Friend Avatar">
                 <span class="friend-name">Peter</span>
@@ -210,26 +200,26 @@
     </div>
 
     <script>
-        let selectedActivity = 'run'; // 默认选择“Run”
+        let selectedActivity = 'run'; 
 
-        // 更新所选活动类型的函数
+        //A function that updates the selected activity type
         function selectMatchType(button, activity) {
             document.querySelectorAll('.match-type button').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             selectedActivity = activity;
         }
 
-        // 根据所选活动类型导航
+        // Navigate according to the selected activity type
         document.getElementById('startMatchBtn').addEventListener('click', function() {
             if (selectedActivity === 'run') {
                 window.location.href = 'run.html';
             } else if (selectedActivity === 'kick') {
                 window.location.href = 'kick.html';
             }
-            // 如果有其他活动页面，可以在这里添加更多条件
+            // If there are other active pages, more conditions can be added here
         });
 
-        // 邀请按钮的切换功能
+        // Invite button toggle function
         function toggleInvite(button) {
             button.classList.toggle('checked');
             button.textContent = button.classList.contains('checked') ? '✓' : '+';
