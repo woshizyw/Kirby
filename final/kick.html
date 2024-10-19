@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>High Knee Record</title>
     <style>
-        /* 基础样式 */
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -18,7 +18,7 @@
             position: relative;
         }
 
-        /* 容器样式 */
+
         .step-counter-container {
             background-color: #fff;
             padding: 20px 40px;
@@ -48,7 +48,7 @@
             font-size: 24px;
         }
 
-        /* 按钮样式 */
+
         .button-group {
             display: flex;
             justify-content: center;
@@ -70,7 +70,7 @@
             background-color: #e96e6b;
         }
 
-        /* 返回按钮 */
+
         .back-icon {
             position: absolute;
             top: 20px;
@@ -80,7 +80,7 @@
             cursor: pointer;
         }
 
-        /* 弹出框样式 */
+
         .modal {
             display: none;
             position: fixed;
@@ -111,7 +111,7 @@
             font-size: 16px;
         }
 
-        /* 模态框遮罩层 */
+
         .overlay {
             display: none;
             position: fixed;
@@ -125,7 +125,7 @@
     </style>
 </head>
 <body>
-    <!-- 返回到exercise页面的按钮 -->
+
     <a href="exercise.html" class="back-icon">←</a>
 
     <div class="step-counter-container">
@@ -145,7 +145,7 @@
         </div>
     </div>
 
-    <!-- 弹出框 -->
+
     <div class="overlay" id="overlay"></div>
     <div class="modal" id="resultModal">
         <h2>Game Over</h2>
@@ -154,11 +154,11 @@
     </div>
 
     <script>
-        // 初始化高抬腿次数
+        // Initialize the number of leg raises
         let user1HighKnee = 0;
         let user2HighKnee = 0;
 
-        // 监听键盘按键事件
+        // Listen for keystroke events
         document.addEventListener('keydown', (event) => {
             if (event.key === 's' || event.key === 'S') {
                 user1HighKnee++;
@@ -170,7 +170,7 @@
             }
         });
 
-        // 重置计数
+        // Reset the count
         function resetCount() {
             user1HighKnee = 0;
             user2HighKnee = 0;
@@ -178,7 +178,7 @@
             document.getElementById('user2-count').textContent = user2HighKnee;
         }
 
-        // 结束游戏并显示结果
+        // End the game and display the result
         function endGame() {
             let resultText;
             if (user1HighKnee > user2HighKnee) {
@@ -190,12 +190,12 @@
             }
             document.getElementById('resultText').textContent = resultText;
 
-            // 显示弹出框
+            // Display the pop-up box
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('resultModal').style.display = 'block';
         }
 
-        // 点击遮罩层隐藏弹出框
+        // Click on the overlay to hide the pop-up
         document.getElementById('overlay').addEventListener('click', () => {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('resultModal').style.display = 'none';
